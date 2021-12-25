@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <My-form :model="userInfo" :rules="rules">
-      <My-form-item label="用户名">
+    <My-form :model="userInfo" :rules="rules" style="width: 500px">
+      <My-form-item label="用户名" prop="userName">
         <My-input v-model="userInfo.userName" placeholder="请输入用户名" />
       </My-form-item>
-      <My-form-item label="密码">
+      <My-form-item label="密码" prop="password">
         <My-input type="password" v-model="userInfo.password" placeholder="请输入密码" />
       </My-form-item>
     </My-form>

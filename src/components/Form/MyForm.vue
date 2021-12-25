@@ -14,6 +14,10 @@ export default {
       require: true,
     },
     rules: Object,
+    labelWidth: {
+      type: String,
+      default: '100px'
+    }
   },
   provide() {
     return {

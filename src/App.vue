@@ -1,20 +1,23 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <My-input v-model="msg"/>
+    <p>{{msg}}</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyInput from '@/components/Form/MyInput.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MyInput
   },
-  created() {
-    
+  data() {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
   }
 }
 </script>

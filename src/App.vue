@@ -1,26 +1,39 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <My-form-item label="消息">
-      <My-input v-model="msg"/>
-    </My-form-item>
-    <p>{{msg}}</p>
+    <My-form :model="userInfo" :rules="rules">
+      <My-form-item label="用户名">
+        <My-input v-model="userInfo.userName" placeholder="请输入用户名" />
+      </My-form-item>
+      <My-form-item label="密码">
+        <My-input type="password" v-model="userInfo.password" placeholder="请输入密码" />
+      </My-form-item>
+    </My-form>
   </div>
 </template>
 
 <script>
 import MyInput from '@/components/Form/MyInput.vue'
 import MyFormItem from '@/components/Form/MyFormItem.vue'
+import MyForm from '@/components/Form/MyForm.vue'
 
 export default {
   name: 'App',
   components: {
     MyInput,
-    MyFormItem
+    MyFormItem,
+    MyForm
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      userInfo: {
+        userName: '',
+        password: ''
+      },
+      rules: {
+        userName: [{required: true, message: '请输入用户名'}],
+        password: [{required: true, message: '请输入密码'}]
+      }
     }
   }
 }

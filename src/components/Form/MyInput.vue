@@ -1,13 +1,14 @@
 <template>
   <div>
       <!-- 自定义组件双向绑定v-model： :value @input -->
-      <input :type="type" :value="value" @input="onInput">
+      <input :type="type" :value="value" @input="onInput" v-bind="$attrs">
   </div>
 </template>
 
 <script>
 export default {
     name: 'my-input',
+    inheritAttrs: false,//避免未被props接收的一些属性设置到当前组件根元素上
     props: {
         value: {
             type: String,

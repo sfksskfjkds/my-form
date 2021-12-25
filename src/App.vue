@@ -1,18 +1,22 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <My-input v-model="msg"/>
+    <My-form-item label="消息">
+      <My-input v-model="msg"/>
+    </My-form-item>
     <p>{{msg}}</p>
   </div>
 </template>
 
 <script>
 import MyInput from '@/components/Form/MyInput.vue'
+import MyFormItem from '@/components/Form/MyFormItem.vue'
 
 export default {
   name: 'App',
   components: {
-    MyInput
+    MyInput,
+    MyFormItem
   },
   data() {
     return {

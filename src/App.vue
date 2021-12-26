@@ -43,9 +43,14 @@ export default {
     validate() {
       this.$refs.myForm.validate(valid => {
         if (valid) {
-          console.log('验证通过')
+          this.$notice({
+            message: '验证通过 √'
+          }).show()
         }else {
-          console.log('验证失败')
+          this.$notice({
+            message: '验证失败 ×',
+            type: 'error'
+          }).show()
         }
       })
     }

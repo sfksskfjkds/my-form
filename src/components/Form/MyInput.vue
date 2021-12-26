@@ -33,12 +33,9 @@ export default {
 
 <style scope>
 .my-input {
-    position: relative;
-    display: inline-block;
     width: 100%;
 }
 input {
-    display: inline-block;
     width: 100%;
     box-sizing: border-box;
 }

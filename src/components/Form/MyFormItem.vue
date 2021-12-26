@@ -46,8 +46,8 @@ export default {
             const desc = {[this.prop]: rules }
             // 创建Skema实例
             const skema = new Skema(desc)
-            // 执行校验,传入校验源
-            skema.validate({[this.prop]: value}, errors => {
+            // 执行校验,传入校验源,skema.validate返回的是一个promise对象，这里将其返回方便全局校验
+            return skema.validate({[this.prop]: value}, errors => {
                 if(errors) {
                     // 错误存在则显示用户定义的错误信息
                     this.error = errors[0].message
@@ -62,29 +62,28 @@ export default {
 </script>
 
 <style scoped>
+/* alt+shift+a:多行注释
+百分比：margin,padding,relative根据父元素宽高决定(一般根据父元素宽高来)，absolute根据定位父级来
+
+*/
 .my-form_item {
-    position: relative;
     margin-bottom: 1.2rem;
-}
-.my-form_item:after,.my-form_item:before {
-    display: table;
-    content: "";
 }
 label {
     text-align: right;
     vertical-align: middle;
     float: left;
     padding: 0 12px 0 0;
-    box-sizing: border-box;
+    box-sizing: border-box;/*padding和boder加在label宽度内，防止padding:12px造成布局混乱*/
 }
 .my-form_item_content {
-    position: relative;
+    position: relative;/*不脱离文档流，根据自身静态位置定位，若未设置宽度，则其宽度为父元素宽度*/
 }
 .error {
     color: red;
     font-size: 0.8rem;
     position: absolute;
-    top: 100%;
+    top: 100%;/*absolute定位脱离文档流，根据设置有relative的父/祖先元素定位，百分比也是根据父/祖先宽高的百分比计算，若未设置宽度，则其宽度由里面内容决定*/
     left: 0;
 }
 </style>

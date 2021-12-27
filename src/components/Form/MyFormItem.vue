@@ -13,7 +13,8 @@
 <script>
 import Skema from 'async-validator'
 export default {
-    name: 'MyFormItem',
+    name: 'myFormItem',
+    componentName: 'myFormItem',
     props: {
         label: String,
         prop: String,//用于校验的属性

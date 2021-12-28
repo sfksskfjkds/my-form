@@ -11,7 +11,8 @@ export default {
                 }
             }
             if (parent) {
-                parent.$emit(eventName,params)
+                // apply展开参数，方便后续操作
+                parent.$emit.apply(parent,[eventName].concat(params))
             }
         }
     }

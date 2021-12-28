@@ -32,11 +32,11 @@ export default {
                 this.isShow = false
             },this.dulation)
         },
-        hide() {
-            this.isShow = false;
-            // 删除组件，要求组件实例上实现remove方法，这里在创建组件实例的create.js中实现
-            this.remove()
-        }
+        // hide() {
+        //     this.isShow = false;
+        //     // 删除组件，要求组件实例上实现remove方法，这里在创建组件实例的create.js中实现
+        //     this.remove()
+        // }
     }
 }
 </script>

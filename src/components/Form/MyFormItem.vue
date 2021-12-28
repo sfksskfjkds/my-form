@@ -12,6 +12,7 @@
 
 <script>
 import Skema from 'async-validator'
+import emitter from '@/mixins/emitter'
 export default {
     name: 'myFormItem',
     componentName: 'myFormItem',
@@ -24,6 +25,7 @@ export default {
         }
     },
     inject: ['form'],
+    mixins: [emitter],
     data() {
         return {
             error: ''
@@ -31,9 +33,14 @@ export default {
     },
     mounted() {
         this.$on('validate', () => {
+            console.log('执行校验');
             // 执行校验
             this.validate()
         })
+        // 当前带有验证属性prop的formItem组件挂载后通知form组件收集
+        if(this.prop) {
+            this.dispatch('MyForm','addFormItem',[this])
+        }
     },
     methods: {
         validate() {
@@ -58,6 +65,10 @@ export default {
                 }
             })
         }
+    },
+    beforeDestroy() {
+        // 组件销毁前，通知form释放组件实例
+        this.dispatch('MyForm','removeFormItem',[this])
     }
 }
 </script>

@@ -32,7 +32,7 @@ export default {
                 解决办法是混入一个dispatch方法，传入组件定义的componeName,循环向上查找myFormItem组件，
                 找到则让该组件触发校验(组件的监听与触发必须是同一个组件原则)
              */
-            this.dispatch('myFormItem','validate',e.target.value)
+            this.dispatch('myFormItem','validate')
         }
     }
 

@@ -16,15 +16,30 @@ function create(Component, props) {
     document.body.appendChild(vm.$el)
     // 返回组件实例，创建的vue实例子组件的第一个元素(Component实例)
     const comp = vm.$children[0]
-    console.log(comp,11);
-    // 实现组件实例的remove方法(删除dom、销毁组件实例)
-    comp.remove = function() {
-        document.body.removeChild(vm.$el)
-        vm.$destroy()
-    }
+    // 实现组件实例的remove方法(删除dom、销毁组件实例)，不过组件根元素上用的是v-if来控制显示与否，这里也不需要定义remove方法
+    // comp.remove = function() {
+    //     document.body.removeChild(vm.$el)
+    //     vm.$destroy()
+    // }
+    return comp
+}
+
+function createByExtend(Component,props) {
+    // 获取组件构造函数
+    const Ctor = Vue.extend(Component)
+    // 创建组件实例
+    const comp = new Ctor({propsData: props})
+    //生成dom
+    comp.$mount()
+    // 把dom追加到body上
+    document.body.appendChild(comp.$el)
     return comp
 }
 
 Vue.prototype.$notice = function(props) {
     return create(Notice, props)
+}
+
+Vue.prototype.$notice1 = function(props) {
+    return createByExtend(Notice, props)
 }

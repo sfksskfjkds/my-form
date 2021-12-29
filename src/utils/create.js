@@ -36,10 +36,15 @@ function createByExtend(Component,props) {
     return comp
 }
 
-Vue.prototype.$notice = function(props) {
-    return create(Notice, props)
-}
-
-Vue.prototype.$notice1 = function(props) {
-    return createByExtend(Notice, props)
+// 以插件的方式注册create
+export default {
+    install(Vue) {
+        Vue.prototype.$notice = function(props) {
+            return create(Notice, props)
+        }
+        
+        Vue.prototype.$notice1 = function(props) {
+            return createByExtend(Notice, props)
+        }
+    }
 }

@@ -33,11 +33,10 @@ export default {
     },
     mounted() {
         this.$on('validate', () => {
-            console.log('执行校验');
             // 执行校验
             this.validate()
         })
-        // 当前带有验证属性prop的formItem组件挂载后通知form组件收集
+        // 当前带有验证属性prop的formItem组件挂载后通知form组件收集formItem实例(全局校验，依次执行validate方法)
         if(this.prop) {
             this.dispatch('MyForm','addFormItem',[this])
         }

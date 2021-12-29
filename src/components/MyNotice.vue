@@ -61,7 +61,7 @@ export default {
   /* transform将影响子元素fixed定位 */
   transform: translate(-50%);
   padding: 5px 20px;
-  width: 300px;
+  width: 20%;
   z-index: 101;
   /* box-shadow: X轴偏移量 Y轴偏移量 阴影模糊值大小 阴影颜色 inset(不加默认外阴影，加上设置成内阴影) */
   box-shadow: 0 0 5px gray;

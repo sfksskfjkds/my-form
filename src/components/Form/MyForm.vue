@@ -17,7 +17,7 @@ export default {
     rules: Object,
     labelWidth: {
       type: String,
-      default: '100px'
+      default: '4rem'
     }
   },
   provide() {
@@ -44,7 +44,6 @@ export default {
       // .map(child => {
       //   return child.validate()
       // })
-      console.log(this.formItems);
       const tasks = this.formItems.map(formItem => {
         return formItem.validate()
       })

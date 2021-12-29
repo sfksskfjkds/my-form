@@ -1,7 +1,7 @@
 <template>
   <div class="my-form_item">
       <label :for="prop" v-if="label" :style="{width: form.labelWidth}">{{ label }}</label>
-      <div class="my-form_item_content" :style="{'margin-left': form.labelWidth}">
+      <div class="my-form_item_content" :style="{'margin-left': label ? form.labelWidth : 0}">
         <!-- 默认插槽，存放MyInput -->
         <slot></slot>
         <!-- 显示校验的错误信息 -->
@@ -19,10 +19,6 @@ export default {
     props: {
         label: String,
         prop: String,//用于校验的属性
-        width: {
-            type: String,
-            default: '100px'
-        }
     },
     inject: ['form'],
     mixins: [emitter],

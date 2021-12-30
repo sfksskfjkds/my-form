@@ -1,0 +1,32 @@
+
+/* 
+    @media 媒体类型 and (媒体特性) {    样式代码...   }
+    媒体类型：即设备类型，screen,not print
+    媒体特性：max-width,min-width
+*/
+@media only screen and (max-width: 768px) {
+    .my-notice {
+        width: 40%;
+    }
+    .my-form {
+        width: 96%;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .my-notice {
+        width: 30%;
+    }
+    .my-form {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .my-notice {
+        width: 20%;
+    }
+    .my-form {
+        width: 40%;
+    }
+}

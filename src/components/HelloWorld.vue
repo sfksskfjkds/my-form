@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <My-form :model="userInfo" :rules="rules" ref="myForm" style="width: 96%">
+    <My-form :model="userInfo" :rules="rules" ref="myForm">
       <My-form-item label="用户名" prop="userName">
         <My-input v-model="userInfo.userName" placeholder="请输入用户名" />
       </My-form-item>
@@ -43,7 +43,7 @@ export default {
     validate() {
       this.$refs.myForm.validate(valid => {
         if (valid) {
-          this.$notice1({
+          this.$notice({
             message: '验证通过 √'
           })
         }else {
@@ -59,5 +59,7 @@ export default {
 </script>
 
 <style scoped>
-
+.hello .my-form {
+  margin: 0 auto;
+}
 </style>

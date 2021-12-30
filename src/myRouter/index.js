@@ -2,6 +2,11 @@ import Vue from 'vue'
 import MyVueRouter from './my-vue-router'
 import Home from '../views/Home.vue'
 
+/* 
+  1.如果插件是一个对象，必须提供install方法，
+  2.如果是一个函数则会被视为install方法，install方法调用时，会将Vue作为参数传入
+  3.必须在new Vue()之前被调用
+*/
 Vue.use(MyVueRouter)
 
 const routes = [

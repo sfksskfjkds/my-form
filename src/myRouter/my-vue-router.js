@@ -4,13 +4,17 @@ let Vue;
 class MyVueRouter {
     constructor(options) {
         this.$options = options
-        // 创建响应式的current属性
+        // 创建响应式的current属性，current变化让router-view的render函数(用到了current)自动执行
         Vue.util.defineReactive(this,'current','/')
         // router实例化时监听hashchange事件,bind防止onhashchange函数上下文为window
         window.addEventListener('hashchange', this.onhashchange.bind(this))
         // 还要监听用户刷新后的load事件
         window.addEventListener('load', this.onhashchange.bind(this))
-
+        // 创建路由路径与组件的对应关系
+        this.routeMap = {}
+        options.routes.forEach(route => {
+            this.routeMap[route.path] = route.component
+        })
     }
     onhashchange() {
         this.current = window.location.hash.slice(1)
@@ -22,7 +26,10 @@ MyVueRouter.install = function(_Vue) {
     Vue = _Vue;
     /* 
         挂载$router以供所有Vue实例访问router实例
-        1.获取Vue根实例中的router选项(全局混入一个生命周期或方法，拿到组件实例)
+            1.获取Vue根实例中的router选项(全局混入一个生命周期或方法，拿到组件实例)
+            2.拿到Vue根实例上挂载的router实例后添加到Vue的原型上
+        注：有个很奇怪的问题就是为什么不在new Vue()时配置对象里面声明一个生命周期钩子(比如beforeCreate),
+            在里面把router实例添加到Vue原型上，亲测有效，.....待日后验证
     */
    Vue.mixin({
        beforeCreate() {
@@ -62,13 +69,14 @@ MyVueRouter.install = function(_Vue) {
     Vue.component('router-view', {
         render(h) {
             // 获取url对应的component组件
-            let Component = null
+            let Component = this.$router1.routeMap[this.$router1.current]
             // 遍历路由表(实例化路由时传入的routes选项)
-            this.$router.$options.routes.forEach(route => {
-                if (route.path === this.$router.current) {
-                    Component = route.component
-                }
-            })
+            // this.$router1.$options.routes.forEach(route => {
+            //     if (route.path === this.$router1.current) {
+            //         /* 路由表中的path路径与路由实例的current属性匹配，则切换路由渲染 */
+            //         Component = route.component
+            //     }
+            // })
             return h(Component)
         }
     })

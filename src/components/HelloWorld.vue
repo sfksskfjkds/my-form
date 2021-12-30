@@ -45,12 +45,12 @@ export default {
         if (valid) {
           this.$notice1({
             message: '验证通过 √'
-          }).show()
+          })
         }else {
           this.$notice1({
             message: '验证失败 ×',
             type: 'error'
-          }).show()
+          })
         }
       })
     }

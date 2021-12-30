@@ -8,6 +8,8 @@
         <My-input type="password" v-model="userInfo.password" placeholder="请输入密码" />
       </My-form-item>
       <My-form-item>
+        <p @click="$store.commit('add',1)">{{$store.state.counter}}</p>
+        <p @click="$store.dispatch('asyncAdd',2)">{{$store.state.doubleCouter}}</p>
         <button @click="validate">验证</button>
       </My-form-item>
     </My-form>

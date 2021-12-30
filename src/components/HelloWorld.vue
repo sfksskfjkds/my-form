@@ -58,8 +58,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.hello .my-form {
-  margin: 0 auto;
+<style scoped lang="scss">
+.hello {
+  .my-form {
+    margin: 0 auto;
+  }
 }
 </style>

@@ -51,27 +51,7 @@ export default {
 };
 </script>
 
-<style scope>
-.my-notice {
-  position: fixed;
-  color: ghostwhite;
-  text-align: center;
-  top: 5px;
-  left: 50%;
-  /* transform将影响子元素fixed定位 */
-  transform: translate(-50%);
-  padding: 5px 20px;
-  width: 40%;
-  z-index: 101;
-  /* box-shadow: X轴偏移量 Y轴偏移量 阴影模糊值大小 阴影颜色 inset(不加默认外阴影，加上设置成内阴影) */
-  box-shadow: 0 0 5px gray;
-}
-.notice-success {
-  background: forestgreen;
-}
-.notice-error {
-  background: red;
-}
+<style scope lang="scss">
 .mask {
   /* 
         1.定位嵌套产生的z-index问题：
@@ -94,5 +74,25 @@ export default {
   bottom: 0;
   background: black;
   opacity: 0.7;
+  .my-notice {
+    position: fixed;
+    color: ghostwhite;
+    text-align: center;
+    top: 5px;
+    left: 50%;
+    /* transform将影响子元素fixed定位 */
+    transform: translate(-50%);
+    padding: 5px 20px;
+    width: 40%;
+    z-index: 101;
+    /* box-shadow: X轴偏移量 Y轴偏移量 阴影模糊值大小 阴影颜色 inset(不加默认外阴影，加上设置成内阴影) */
+    box-shadow: 0 0 5px gray;
+  }
+  .notice-success {
+    background: forestgreen;
+  }
+  .notice-error {
+    background: red;
+  }
 }
 </style>

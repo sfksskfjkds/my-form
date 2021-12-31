@@ -5,9 +5,10 @@ import Notice from '@/utils/create.js'
 
 // 引入自定义路由插件
 import router from '@/myRouter'
-
-import store from './store'
 // import router from '@/router'
+
+import store from './myStore'
+// import store from './store'
 
 Vue.use(Notice)
 
@@ -17,7 +18,6 @@ new Vue({
   router,
   render: h => h(App),
   store,
-
   beforeCreate() {
     Vue.prototype.$router1 = router
   }

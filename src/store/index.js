@@ -11,12 +11,15 @@ export default new Vuex.Store({
   mutations: {
     add(state,params) {
       state.counter += params
+    },
+    doubleAdd(state,params) {
+      state.doubleCounter += params*2
     }
   },
   actions: {
     asyncAdd({commit},params) {
       setTimeout(() => {
-        commit('add',params)
+        commit('doubleAdd',params)
       },1000)
     }
   },

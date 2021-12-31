@@ -9,7 +9,7 @@
       </My-form-item>
       <My-form-item>
         <p @click="$store.commit('add',1)">{{$store.state.counter}}</p>
-        <p @click="$store.dispatch('asyncAdd',2)">{{$store.state.doubleCouter}}</p>
+        <p @click="$store.dispatch('asyncAdd',2)">{{$store.state.doubleCounter}}</p>
         <button @click="validate">验证</button>
       </My-form-item>
     </My-form>
@@ -29,11 +29,12 @@ export default {
     MyInput,
     MyFormItem,
     MyForm
-  },data() {
+  },
+  data() {
     return {
       userInfo: {
-        userName: '',
-        password: ''
+        userName: '1',
+        password: '1'
       },
       rules: {
         userName: [{required: true, message: '请输入用户名'}],

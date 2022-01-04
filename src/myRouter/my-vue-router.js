@@ -68,6 +68,16 @@ MyVueRouter.install = function(_Vue) {
     // 实现全局组件router-view
     Vue.component('router-view', {
         render(h) {
+            this.$vnode.data.routerView = true
+            let depth = 0
+            let parent = this.$parent 
+            while (parent) {
+                let vnodeData = parent.$vnode && parent.$vnode.data
+                if (vnodeData && vnodeData.routerView) {
+                    depth ++
+                }
+                parent = this.$parent
+            }
             // 获取url对应的component组件
             let Component = this.$router1.routeMap[this.$router1.current]
             // 遍历路由表(实例化路由时传入的routes选项)

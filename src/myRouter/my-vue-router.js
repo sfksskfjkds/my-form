@@ -5,19 +5,37 @@ class MyVueRouter {
     constructor(options) {
         this.$options = options
         // 创建响应式的current属性，current变化让router-view的render函数(用到了current)自动执行
-        Vue.util.defineReactive(this,'current','/')
+        // Vue.util.defineReactive(this,'current','')
         // router实例化时监听hashchange事件,bind防止onhashchange函数上下文为window
         window.addEventListener('hashchange', this.onhashchange.bind(this))
         // 还要监听用户刷新后的load事件
         window.addEventListener('load', this.onhashchange.bind(this))
-        // 创建路由路径与组件的对应关系
-        this.routeMap = {}
-        options.routes.forEach(route => {
-            this.routeMap[route.path] = route.component
-        })
+        this.current = window.location.hash.slice(1)
+        Vue.util.defineReactive(this,'matched',[])
+        this.getMatched()
+
     }
     onhashchange() {
         this.current = window.location.hash.slice(1)
+        this.matched = []
+        this.getMatched()
+    }
+
+    getMatched(routes) {
+        const router = this
+        routes = routes || router.$options.routes
+        routes.forEach(route => {
+            if (route.path === '/' && router.current === '/') {
+                router.matched.push(route)
+                return
+            }
+            if (route.path !== '/' && router.current.indexOf(route.path) > -1) {
+                router.matched.push(route)
+            }
+            if (route.children) {
+                router.getMatched(route.children)
+            }
+        })
     }
 }
 
@@ -76,10 +94,10 @@ MyVueRouter.install = function(_Vue) {
                 if (vnodeData && vnodeData.routerView) {
                     depth ++
                 }
-                parent = this.$parent
+                parent = parent.$parent
             }
-            // 获取url对应的component组件
-            let Component = this.$router1.routeMap[this.$router1.current]
+            // 获取当前router-view层级与路由表中对应的组件
+            let Component = this.$router.matched[depth].component
             // 遍历路由表(实例化路由时传入的routes选项)
             // this.$router1.$options.routes.forEach(route => {
             //     if (route.path === this.$router1.current) {
